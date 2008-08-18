@@ -7,20 +7,27 @@
  */
 public abstract class Animal implements IAnimal
 {
-	private String name;
-	private String idNumber;
-	private int numberOfLegs;
-	
-
-	
+	private String      name;
+	private String      idNumber;
+	private int         numberOfLegs;
+	private boolean     isAggressive;
 	private HousingType housing;
 	
-	public Animal (String name, String id, int numberOfLegs, HousingType housing)
+	public Animal (String name, String id, int numberOfLegs, HousingType housing, boolean isAggressive)
 	{
-		this.name = name;
+		this.setName( name);
 		this.idNumber = id;
 		this.numberOfLegs = numberOfLegs;
 		this.housing = housing;
+		this.isAggressive = isAggressive;
+	}
+	public Animal(String name, String id, int numberOfLegs, HousingType housing)
+	{
+		this.setName(name);
+		this.idNumber = id;
+		this.numberOfLegs = numberOfLegs;
+		this.housing = housing;
+		this.isAggressive = false; /* Animals are cute a fluffy untill they maim */ 
 	}
 	
 	/**
@@ -61,6 +68,14 @@ public abstract class Animal implements IAnimal
 	}
 	
 	/**
+	 * isAggressive
+	 *   Returns weather or not the animal is aggressive.
+	 * @return boolean
+	 */
+	public boolean isAggressive() {
+		return this.isAggressive;
+	}
+	/**
 	 * setHousing
 	 *    Set the typing of housing the animal is kept in.
 	 * @param housing 
@@ -76,10 +91,12 @@ public abstract class Animal implements IAnimal
 	 * @return A string version of the animal object.
 	 */
 	public String toString( ) {
-		return " No "           + idNumber     + ":" +
-		       "\t Name: "        + name         + "," +
-		       "\t Num of legs: " + numberOfLegs + "," +
-		       "\t Living: "      + housing;
+		return " ID: "          + idNumber     + "," +
+		       " Name: "        + name         + "," +
+		       " Num of legs: " + numberOfLegs + "," +
+		       " Living: "      + housing      + "," +
+		       " Category: "    + category()   + "," +
+		       " Sort: "        + sort();
 	}
 	
 	/**
@@ -89,7 +106,11 @@ public abstract class Animal implements IAnimal
 	 * @return nothing
 	 */
 	public void setName(String name) {
-		this.name = name;
+		if(name.length() == 0){
+			this.name = sort();
+		} else {
+		this.name = name;			
+		}
 	}
 	/**
 	 * setIDNumber
@@ -108,6 +129,15 @@ public abstract class Animal implements IAnimal
 	 */
 	public void setNumberOfLegs(int numOfLegs) {
 		this.numberOfLegs = numOfLegs;	
+	}
+    /**
+     * setIsAggressive
+     *   Set weather or not the animal is aggressive.
+     * @param isAggressive boolean.
+     * @return nothing
+     */
+	public void setAggressive( boolean isAggressive ) {
+		this.isAggressive = isAggressive;
 	}
 
 	/**
@@ -130,8 +160,6 @@ public abstract class Animal implements IAnimal
 		return "Yuck!";
 	}
 
-	
-	
 	/**
 	 * eat
 	 *    Feed the animal something.
@@ -142,25 +170,11 @@ public abstract class Animal implements IAnimal
 		// The default animal is an omnivor, it love everything you give it.
 		return likesFood();
 	}
-
-	
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
+	public String category() {
+		return "";
+	}
+	public String sort() {
+		return "";
+	}
 	
 }

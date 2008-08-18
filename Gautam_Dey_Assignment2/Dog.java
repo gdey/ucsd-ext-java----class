@@ -11,13 +11,8 @@ public class Dog extends MeatEater
 	Dog (String name, String id, HousingType housing) {
 		super(name,id,4,housing);
 	}
-	/**
-	 * toString
-	 *
-	 * @param  
-	 * @return 
-	 */
-	public String toString( ) {
-		return super.toString() + ",\t Sort: Dog";
+	public String sort() {
+		return "Dog";
 	}
+	
 }

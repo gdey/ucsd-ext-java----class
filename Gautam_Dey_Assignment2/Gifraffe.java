@@ -10,13 +10,7 @@ public class Gifraffe extends PlantEater
 	Gifraffe (String name, String id, HousingType housing) {
 		super(name,id,4,housing);
 	}
-	/**
-	 * toString
-	 *
-	 * @param  
-	 * @return 
-	 */
-	public String toString( ) {
-		return super.toString() + ",\t Sort: Gifraffe";
+	public String sort() {
+		return "Gifraffe";
 	}
 }

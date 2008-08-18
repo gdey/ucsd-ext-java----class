@@ -10,13 +10,7 @@ public class Wolf extends MeatEater
 	Wolf (String name, String id, HousingType housing) {
 		super(name,id,4,housing);
 	}
-	/**
-	 * toString
-	 *
-	 * @param  
-	 * @return 
-	 */
-	public String toString( ) {
-		return super.toString() + ", Sort: Wolf";
+	public String sort() {
+		return "Wolf";
 	}
 }

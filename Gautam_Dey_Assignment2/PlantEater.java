@@ -5,19 +5,10 @@
  * Class: Java Programming ][
  * Instructor: Farid Naisan
  */
-public abstract class MeatEater extends Animal
+public abstract class PlantEater extends Animal
 {
-	MeatEater (String name, String id, int numberOfLegs, HousingType housing) {
+	PlantEater (String name, String id, int numberOfLegs, HousingType housing) {
 		super(name,id,numberOfLegs,housing);
-	}
-	/**
-	 * toString
-	 *
-	 * @param  
-	 * @return String
-	 */
-	public String toString( ) {
-		return super.toString() + ",\t Category: Meat Eater";
 	}
 	
 	/**
@@ -27,11 +18,14 @@ public abstract class MeatEater extends Animal
 	 * @return Weather the animal like the food you tried to feed it.
 	 */
 	public String eat(String food ) {
-		if( food.equalsIgnoreCase("Pork") || food.equalsIgnoreCase("Beef") )
+		if( food.equalsIgnoreCase("Grass") || food.equalsIgnoreCase("Leaves") )
 		{
 			return likesFood();
 		}
 		return dislikesFood();
+	}
+	public String category() {
+		return "Plant Eater";
 	}
 
 }
