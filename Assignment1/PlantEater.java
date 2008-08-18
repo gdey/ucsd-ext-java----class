@@ -10,15 +10,6 @@ public abstract class PlantEater extends Animal
 	PlantEater (String name, String id, int numberOfLegs, HousingType housing) {
 		super(name,id,numberOfLegs,housing);
 	}
-	/**
-	 * toString
-	 *
-	 * @param  
-	 * @return String
-	 */
-	public String toString( ) {
-		return super.toString() + ",\t Category: Plant Eater";
-	}
 	
 	/**
 	 * eat
@@ -32,6 +23,9 @@ public abstract class PlantEater extends Animal
 			return likesFood();
 		}
 		return dislikesFood();
+	}
+	public String category() {
+		return "Plant Eater";
 	}
 
 }

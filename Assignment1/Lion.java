@@ -10,13 +10,7 @@ public class Lion extends MeatEater
 	Lion (String name, String id, HousingType housing) {
 		super(name,id,4,housing);
 	}
-	/**
-	 * toString
-	 *
-	 * @param  
-	 * @return 
-	 */
-	public String toString( ) {
-		return super.toString() + ",\t Sort: Lion";
+	public String sort() {
+		return "Lion";
 	}
 }
