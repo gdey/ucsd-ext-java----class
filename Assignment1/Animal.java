@@ -15,7 +15,7 @@ public abstract class Animal implements IAnimal
 	
 	public Animal (String name, String id, int numberOfLegs, HousingType housing, boolean isAggressive)
 	{
-		this.name = name;
+		this.setName( name);
 		this.idNumber = id;
 		this.numberOfLegs = numberOfLegs;
 		this.housing = housing;
@@ -23,7 +23,7 @@ public abstract class Animal implements IAnimal
 	}
 	public Animal(String name, String id, int numberOfLegs, HousingType housing)
 	{
-		this.name = name;
+		this.setName(name);
 		this.idNumber = id;
 		this.numberOfLegs = numberOfLegs;
 		this.housing = housing;
@@ -106,7 +106,11 @@ public abstract class Animal implements IAnimal
 	 * @return nothing
 	 */
 	public void setName(String name) {
-		this.name = name;
+		if(name.length() == 0){
+			this.name = sort();
+		} else {
+		this.name = name;			
+		}
 	}
 	/**
 	 * setIDNumber

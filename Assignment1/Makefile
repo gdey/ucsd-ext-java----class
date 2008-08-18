@@ -6,6 +6,9 @@
 # * Instructor: Farid Naisan
 # */
 
+all: GUIAnimalFarm.class GUIUserInterface.class AnimalFarm.class
+cleanall: clean all
+
 AnimalFarm.class: UserInterface.class AnimalFarm.java
 	javac AnimalFarm.java
 	
@@ -50,5 +53,16 @@ Gifraffe.class: PlantEater.class Gifraffe.java
 Deer.class: PlantEater.class Deer.java
 	javac Deer.java
 
+GUIUserInterface.class: AnimalManager.class PanelAnimalInfo.class PanelAnimalDetail.class GUIUserInterface.java
+	javac GUIUserInterface.java
+
+PanelAnimalInfo.class: AnimalManager.class PanelAnimalInfo.java
+	javac PanelAnimalInfo.java
+
+PanelAnimalDetail.class: Animal.class PanelAnimalDetail.java
+	javac PanelAnimalDetail.java
+
+GUIAnimalFarm.class: GUIUserInterface.class GUIAnimalFarm.java
+	javac GUIAnimalFarm.java
 clean:
-	rm *.class
+	rm -f *.class
