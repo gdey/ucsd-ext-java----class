@@ -8,27 +8,37 @@
 public abstract class Animal implements IAnimal
 {
 	private String             name;
-	private String             idNumber;
+	private String             id;
 	private int                numberOfLegs;
 	private boolean            isAggressive;
 	private HousingType        housing;
 	private AnimalSortType     sort;
 	private AnimalCategoryType category;
-	public Animal (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sortType, AnimalCategoryType categoryType, boolean isAggressive)
+	
+	/************* Constructors ***************************/
+	public Animal (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType categoryType, boolean isAggressive )
 	{
 		this.setName( name );
-		this.idNumber = id;
-		this.numberOfLegs = numberOfLegs;
-		this.housing = housing;
-		this.sort = sortType;
-		this.category = categoryType;
-		this.isAggressive = isAggressive;
-		
+		this.setID( id );
+		this.setNumberOfLegs( numberOfLegs );
+		this.setHousing( housing );
+		this.setSort( sort );
+		this.setCategory( category );
+		this.setIsAggressive( isAggressive );
 	}
+	
 	public Animal(String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType category)
 	{
-		this = Animal(name, id, numberOfLegs, housing, sortType, category, false);
+		this.setName( name );
+		this.setID( id );
+		this.setNumberOfLegs( numberOfLegs );
+		this.setHousing( housing );
+		this.setSort( sort );
+		this.setCategory( category );
+		this.setIsAggressive( false );		
 	}
+	
+	/************* Getters ***************************/	
 	/**
 	 * getName 
 	 *   Returns the name of the Animal.
@@ -38,22 +48,24 @@ public abstract class Animal implements IAnimal
 	public String getName( ) {
 		return name;
 	}
+	
 	/**
 	 * getIDNumber
 	 *	Returns the IDNumber of the animal
 	 * @param  
 	 * @return Return the IDNumber of the animal.
 	 */
-	public String getIDNumber( ) {
-		return idNumber;
+	public String getID( ) {
+		return id;
 	}
+	
 	/**
 	 * getNumberOfLegs
 	 *    Returns the number of legs the animal has.
 	 * @param  
 	 * @return Returns the number of legs. 
 	 */
-	public int getNumberOfLegs( ) {
+	public Integer getNumberOfLegs( ) {
 		return numberOfLegs;
 	}
 	/**
@@ -74,6 +86,8 @@ public abstract class Animal implements IAnimal
 	public boolean isAggressive() {
 		return this.isAggressive;
 	}
+	
+	/************* Setters ***************************/
 	/**
 	 * setHousing
 	 *    Set the typing of housing the animal is kept in.
@@ -83,20 +97,7 @@ public abstract class Animal implements IAnimal
 	public void setHousing(HousingType housing ) {
 		this.housing = housing;
 	}
-	/**
-	 * toString
-	 *    Stringfy the animal object. 
-	 * @param  
-	 * @return A string version of the animal object.
-	 */
-	public String toString( ) {
-		return " ID: "          + idNumber     + "," +
-		       " Name: "        + name         + "," +
-		       " Num of legs: " + numberOfLegs + "," +
-		       " Living: "      + housing      + "," +
-		       " Category: "    + category     + "," +
-		       " Sort: "        + sort;
-	}
+
 	
 	/**
 	 * setName
@@ -105,8 +106,8 @@ public abstract class Animal implements IAnimal
 	 * @return nothing
 	 */
 	public void setName(String name) {
-		if(name.length() == 0){
-			this.name = sort();
+		if(name == null || name.length() == 0) {
+			throw new IllegalArgumentException("Empty string or null reference passed to setName");
 		} else {
 		    this.name = name;			
 		}
@@ -117,8 +118,8 @@ public abstract class Animal implements IAnimal
 	 * @param id 
 	 * @return nothing
 	 */
-	public void setIDNumber(String id) {
-		this.idNumber = id;
+	public void setID(String id) {
+		this.id = id;
 	}
 	/**
 	 * setNumberOfLegs
@@ -135,10 +136,26 @@ public abstract class Animal implements IAnimal
      * @param isAggressive boolean.
      * @return nothing
      */
-	public void setAggressive( boolean isAggressive ) {
+	public void setIsAggressive( boolean isAggressive ) {
 		this.isAggressive = isAggressive;
 	}
 
+	/**
+	 * toString
+	 *    Stringfy the animal object. 
+	 * @param  
+	 * @return A string version of the animal object.
+	 */
+	public String toString( ) {
+		return " ID: "          + id           + "," +
+		       " Name: "        + name         + "," +
+		       " Num of legs: " + numberOfLegs + "," +
+		       " Living: "      + housing      + "," +
+		       " Category: "    + category     + "," +
+		       " Sort: "        + sort;
+	}
+	
+	
 	/**
 	 * likeFood
 	 *
@@ -169,13 +186,14 @@ public abstract class Animal implements IAnimal
 		// The default animal is an omnivor, it love everything you give it.
 		return likesFood();
 	}
-	public setCategory(AnimalCategoryType category) {
+	
+	public void setCategory(AnimalCategoryType category) {
 		this.category = category;
 	}
 	public AnimalCategoryType getCategory() {
 		return category;
 	}
-	public setSort(AnimalSortType sort) {
+	public void setSort(AnimalSortType sort) {
 		this.sort = sort;
 	}
 	public AnimalSortType getSort() {

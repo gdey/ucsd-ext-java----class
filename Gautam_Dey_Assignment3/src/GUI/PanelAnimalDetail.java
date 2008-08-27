@@ -1,3 +1,4 @@
+package GUI;
 /***********
  * Name: Gautam Dey <gdey@anonymizerinc.com>
  * Date: Sunday, 17 Aug 2008
@@ -48,7 +49,7 @@ public class PanelAnimalDetail extends JPanel{
          pnlGrid.add(pnlRight);
        
      // Sort
-         cmbSort = new JComboBox(SORTS);
+         cmbSort = new JComboBox(AnimalSortType.values());
          cmbSort.addActionListener(new SortActionListener());
          pnlRight = new JPanel();
          pnlRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -151,7 +152,7 @@ public class PanelAnimalDetail extends JPanel{
 	 * indexForSort
 	 */
 	public int indexForSort(String cat) {
-		for (int i=0;i<SORTS.length;i++)
+		for (int i=0;i<AnimalSortType.values().length;i++)
 		{
 			if( SORTS[i].equalsIgnoreCase(cat) ) {
 				return i;
@@ -162,33 +163,11 @@ public class PanelAnimalDetail extends JPanel{
 	
 	// This function will return an animal object as described by the view.
 	public Animal representedAnimal(){
-		switch(cmbSort.getSelectedIndex()){
-			case 0: // A Dog
-				Dog dog = new Dog(txtNickName.getText(), "D000",HousingType.values()[cmbHousing.getSelectedIndex()]);
-				dog.setAggressive(chkAggressive.isSelected());
-				return dog;
-			case 1: // A Lion
-				Lion lion = new Lion(txtNickName.getText(), "L000",HousingType.values()[cmbHousing.getSelectedIndex()]);
-				lion.setAggressive(chkAggressive.isSelected());
-				return lion;
-			case 2: // A Gifraffe
-				Gifraffe gifraffe = new Gifraffe(txtNickName.getText(), "G000",HousingType.values()[cmbHousing.getSelectedIndex()]);
-				gifraffe.setAggressive(chkAggressive.isSelected());
-				return gifraffe;
-			case 3: // A Deer
-				Deer deer = new Deer(txtNickName.getText(), "Dr000",HousingType.values()[cmbHousing.getSelectedIndex()]);
-				deer.setAggressive(chkAggressive.isSelected());
-				return deer;
-			case 4: // A Horse
-				Horse horse = new Horse(txtNickName.getText(), "H000",HousingType.values()[cmbHousing.getSelectedIndex()]);
-				horse.setAggressive(chkAggressive.isSelected());
-				return horse;
-			case 5: // A Wolf
-				Wolf wolf = new Wolf(txtNickName.getText(), "W000",HousingType.values()[cmbHousing.getSelectedIndex()]);
-				wolf.setAggressive(chkAggressive.isSelected());
-				return wolf;
-		}
-		return null;
+		Animal animal;
+		animal = AnimalSortType.values()[cmbSort.getSelectedIndex()].getAnimal(txtNickName.getText());
+		animal.setHousing(HousingType.values()[cmbHousing.getSelectedIndex()]);
+		animal.setIsAggressive(chkAggressive.isSelected());
+		return animal;
 	}
 	public void enableAdd(){
 		btnAdd.setEnabled(true);

@@ -7,7 +7,7 @@
  */
 public abstract class MeatEater extends Animal
 {
-	public Animal (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sortType, AnimalCategoryType categoryType, boolean isAggressive)
+
 	MeatEater (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort) {
 		super(name,id,numberOfLegs,housing,sort,AnimalCategoryType.MeatEater);
 	}
@@ -19,7 +19,8 @@ public abstract class MeatEater extends Animal
 	 * @return Weather the animal like the food you tried to feed it.
 	 */
 	public String eat(String food ) {
-		if( food.equalsIgnoreCase("Pork") || food.equalsIgnoreCase("Beef") )
+		if( food.equalsIgnoreCase("Pork") || 
+		    food.equalsIgnoreCase("Beef") )
 		{
 			return likesFood();
 		}
