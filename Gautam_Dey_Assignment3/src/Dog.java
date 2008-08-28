@@ -12,9 +12,9 @@ public class Dog extends MeatEater
 		super(name,id,4,housing,AnimalSortType.DOG);
 	}
 	Dog (String name, HousingType housing) {
-		super(name,"D00",4,housing,AnimalSortType.DOG);
+		super(name,4,housing,AnimalSortType.DOG);
 	}
 	Dog (String name) {
-		super(name,"D00",4,HousingType.Indoor,AnimalSortType.DOG);
+		super(name,4,HousingType.Indoor,AnimalSortType.DOG);
 	}
 }

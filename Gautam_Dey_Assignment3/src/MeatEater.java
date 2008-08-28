@@ -11,7 +11,9 @@ public abstract class MeatEater extends Animal
 	MeatEater (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort) {
 		super(name,id,numberOfLegs,housing,sort,AnimalCategoryType.MeatEater);
 	}
-	
+	MeatEater (String name, int numberOfLegs, HousingType housing, AnimalSortType sort) {
+		super(name,numberOfLegs,housing,sort,AnimalCategoryType.MeatEater);
+	}
 	/**
 	 * eat
 	 *

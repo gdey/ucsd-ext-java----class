@@ -11,9 +11,9 @@ public class Horse extends PlantEater
 		super(name,id,4,housing,AnimalSortType.HORSE);
 	}
 	Horse (String name, HousingType housing) {
-		super(name,"H00",4,housing,AnimalSortType.HORSE);
+		super(name,4,housing,AnimalSortType.HORSE);
 	}
 	Horse (String name) {
-		super(name,"H00",4,HousingType.Stable,AnimalSortType.HORSE);
+		super(name,4,HousingType.Stable,AnimalSortType.HORSE);
 	}
 }

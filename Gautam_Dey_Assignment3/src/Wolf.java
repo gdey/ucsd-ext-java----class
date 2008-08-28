@@ -11,9 +11,9 @@ public class Wolf extends MeatEater
 		super( name, id, 4, housing, AnimalSortType.WOLF );
 	}
 	Wolf (String name, HousingType housing) {
-		super( name, "W00", 4, housing, AnimalSortType.WOLF );
+		super( name, 4, housing, AnimalSortType.WOLF );
 	}
 	Wolf (String name) {
-		super( name, "W00", 4, HousingType.Outdoor, AnimalSortType.WOLF );
+		super( name, 4, HousingType.Outdoor, AnimalSortType.WOLF );
 	}
 }

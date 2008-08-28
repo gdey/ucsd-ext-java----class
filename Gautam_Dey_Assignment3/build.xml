@@ -11,7 +11,7 @@
 	
 	<target name="jar">
 		<mkdir dir="build/jar" />
-		<jar>
+		<jar destfile="build/jar/AnimalFarm.jar" basedir="build/classes">
 			<manifest>
 				<attribute name="Main-Class" value="AnimalFarm"/>
 			</manifest>

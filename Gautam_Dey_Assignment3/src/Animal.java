@@ -38,6 +38,26 @@ public abstract class Animal implements IAnimal
 		this.setIsAggressive( false );		
 	}
 	
+	public Animal (String name, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType categoryType, boolean isAggressive )
+	{
+		this.setName( name );
+		this.setID( sort.getAbbrv()+"00" );
+		this.setNumberOfLegs( numberOfLegs );
+		this.setHousing( housing );
+		this.setSort( sort );
+		this.setCategory( category );
+		this.setIsAggressive( isAggressive );
+	}
+	public Animal(String name, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType category)
+	{
+		this.setName( name );
+		this.setID( sort.getAbbrv()+"00" );
+		this.setNumberOfLegs( numberOfLegs );
+		this.setHousing( housing );
+		this.setSort( sort );
+		this.setCategory( category );
+		this.setIsAggressive( false );		
+	}
 	/************* Getters ***************************/	
 	/**
 	 * getName 
