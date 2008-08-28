@@ -9,37 +9,42 @@
 
 public enum AnimalSortType
 {
-	DEER,
-	DOG,
-	GIFRAFFE,
-	HORSE,
-	LION,
-	WOLF;
+	DEER("DR"),
+	DOG("D"),
+	GIFRAFFE("G"),
+	HORSE("H"),
+	LION("L"),
+	WOLF("W");
 	
+	private String abbrv;
+	
+	AnimalSortType(String abbrv) {
+		this.abbrv = abbrv;
+	}
 	public Animal getAnimal( String name ){
 		
-		switch( this )
-		{
+		switch( this ){
 			case DEER:
 				return new Deer(name);
-				break;
 			case DOG:
 				return new Dog(name);
-				break;
 			case GIFRAFFE:
 				return new Gifraffe(name);
-				break;
 			case HORSE:
 				return new Horse(name);
-				break;
 			case LION:
 				return new Lion(name);
-				break;
 			case WOLF:
 				return new Wolf(name);
-				break;
 			default:
 				// Throw exception here.
+				return null;
 		}	
+	}
+	public String getAbbrv(){
+		return abbrv;
+	}
+	public String toString(){
+		return this.name().toLowerCase();
 	}
 };

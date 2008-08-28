@@ -10,4 +10,5 @@ enum FoodItem {
 	
 	private FoodType type;
 	FoodItem(FoodType type) { this.type = type; }
+	public FoodType getType(){ return this.type; }
 }

@@ -1,4 +1,3 @@
-package GUI;
 /***********
  * Name: Gautam Dey <gdey@anonymizerinc.com>
  * Date: Sunday, 17 Aug 2008
@@ -136,7 +135,7 @@ public class PanelAnimalDetail extends JPanel{
 		txtNickName.setText(animal.getName());
 		txtNumberOfLegs.setText(""+animal.getNumberOfLegs());
 		cmbHousing.setSelectedIndex(animal.getHousing().ordinal());
-		cmbSort.setSelectedIndex(indexForSort(animal.sort()));
+		cmbSort.setSelectedIndex(indexForSort(animal.getSort().toString()));
 		if( animal instanceof PlantEater ){
 			rbtnPlantEater.setSelected(true);
 			rbtnMeatEater.setSelected(false);

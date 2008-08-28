@@ -18,13 +18,18 @@ public abstract class PlantEater extends Animal
 	 * @return Weather the animal like the food you tried to feed it.
 	 */
 	public String eat(String food ) {
-		if( food.equalsIgnoreCase("Grass")  || 
-		    food.equalsIgnoreCase("Leaves") || 
-		    food.equalsIgnoreCase("Fruit")  ||
-		    food.equalsIgnoreCase("Herbs")  ) 
-		{
-			return likesFood();
+		
+		FoodItem foundFood = null;
+		for( FoodItem aFood: FoodItem.values() ){
+			if( food.equalsIgnoreCase(aFood.toString()) ){
+				foundFood = aFood;
+				break;
+			}
 		}
+		if( foundFood != null && FoodType.PLANT.equals(foundFood.getType())  ) {
+			return likesFood();
+		} 
+		// Throw an error
 		return dislikesFood();
 	}
 

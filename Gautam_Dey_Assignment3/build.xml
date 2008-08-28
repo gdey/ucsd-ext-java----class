@@ -1,72 +1,24 @@
-<?xml version="1.0"?>
-<!-- build file for Gautam_Dey_Assignment3 program -->
-<!-- Created by: Gautam Dey &lt;gautam.dey77@gmail.com&gt;  -->
-
-<project name="AnimalFarm" default="run" basedir=".">
-  <property name="src" value="./src"/>
-  <property name="build" value="./build"/>
-  <property name="classes.dir" value="${build}/classes"
-  <property name="jar.dir" value="${build}/jar" />
-  <property name="main-class" value="GUI.AnimalFarm" />
-  <property name="compile.debug"       value="true"/>
-
-
-  <path id="compile.classpath">
-    <pathelement location="${mysql.jdbc}"/>
-    <pathelement location="${junit.jar}"/>
-  </path>
-
-<!-- 
-Build all Java source files into destdir.  This is common in Java
-projects: the compile target is trivial, since it just says to build
-everything.  Fancier compiler targets are easy if you want to build
-just one file at a time.
- -->
-    <target name="build" depends="init">
-        <javac srcdir="${src}" 
-               destdir="${build}"
-               debug="${compile.debug}"
-               source="1.5">
-           <classpath refid="compile.classpath"/>
-        </javac>
-    </target>
-
-<!--
-	This is to build the JAR file.
--->
-	<target name="jar">
-		
+<project>
+	
+	<target name="clean">
+		<delete dir="build" />
 	</target>
-<!--
-init is a target that sets things up for the build.  Since we use the
-built-in ant function mkdir, it will only make the directory if it
-does not already exist.
--->
-  <target name="init">
-    <mkdir dir="${jar.dir}" />
-	<mkdir dir="${classes.dir}" />
-  </target>
-
-
-  <target name="run" depends="build">
-    <java classname="GIU.AnimalFarm"  
-        fork="true" 
-        dir="${build}" 
-        classpath="${build}" 
-        maxmemory="500m">
-    </java>
-    </target>
-<!--
-Always include a clean target to get rid of all the extra files
-created by the build process, so you can save storage safely, without
-thinking.  Also: sometimes you'll want to do a completely fresh build,
-such as when changing to a new version of the JDK.
--->
-  <target name="clean" description="Removes previous build">
-    <delete verbose="true">
-      <fileset dir="${build}"/>
-    </delete>
-  </target>
-
+	
+	<target name="compile">
+		<mkdir dir="build/classes" />
+		<javac srcdir="src" destdir="build/classes" />
+	</target>
+	
+	<target name="jar">
+		<mkdir dir="build/jar" />
+		<jar>
+			<manifest>
+				<attribute name="Main-Class" value="AnimalFarm"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run">
+		<java jar="build/jar/AnimalFarm.jar" fork="true" />
+	</target>
 </project>
-

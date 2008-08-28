@@ -1,4 +1,3 @@
-package GUI;
 /***********
  * Name: Gautam Dey <gdey@anonymizerinc.com>
  * Date: Sunday, 17 Aug 2008
@@ -6,13 +5,12 @@ package GUI;
  * Class: Java Programming ][
  * Instructor: Farid Naisan
  */
-import GUI.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class UserInterface extends JFrame {
+public class GUIUserInterface extends JFrame {
     
 	private AnimalManager animalMngr;
 	private final int WINDOW_WIDTH  = 800;
@@ -26,7 +24,7 @@ public class UserInterface extends JFrame {
 	// For animal Detail 
 	private PanelAnimalDetail   pnlAnimalDetail;
 	
-	public UserInterface() {	
+	public GUIUserInterface() {	
 		
 		animalMngr = new AnimalManager();
 		// First let's add some Animals

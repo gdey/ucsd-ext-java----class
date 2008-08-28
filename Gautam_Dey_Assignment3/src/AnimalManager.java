@@ -13,14 +13,7 @@ public class AnimalManager extends Object
 	AnimalManager () {
 		animals = new ArrayList<Animal>();
 	}
-
-	// To help with the creation of indexes.
-		int horseCount    = 1;
-		int dogCount      = 1;
-		int lionCount     = 1;
-		int deerCount     = 1;
-		int gifraffeCount = 1;
-		int wolfCount     = 1;
+	private int[] animalCount = new int[AnimalSortType.values().length];
 
 /**
  * getNumOfItems
@@ -36,29 +29,8 @@ public void addAnimalIntoIndex(int index, Animal animal){
 	if(index < 0 || index >= animals.size() ){
 		index = 0;
 	}
-	if(animal == null )
-	  return ;
-	
-	if(animal instanceof Dog){
-		animal.setIDNumber("D"+dogCount);
-		dogCount++;
-	} else if( animal instanceof Deer ){
-		animal.setIDNumber("Dr"+deerCount);
-		deerCount++;
-	} else if( animal instanceof Gifraffe ) {
-		animal.setIDNumber("G"+gifraffeCount);
-		gifraffeCount++;
-	} else if( animal instanceof Lion ) {
-		animal.setIDNumber("L"+lionCount);
-		lionCount++;
-	} else if( animal instanceof Wolf ) {
-		animal.setIDNumber("W"+wolfCount);
-		wolfCount++;
-	} else if( animal instanceof Horse ) {
-		animal.setIDNumber("H"+horseCount);
-		horseCount++;
-	}
-	// If unknown leave the id alone.
+	AnimalSortType sort = animal.getSort();
+	animal.setID(sort.getAbbrv()+(++animalCount[sort.ordinal()]));
 	this.animals.add(index,animal);
 
 
@@ -123,11 +95,11 @@ public void replaceAnimalAtIndex(int index, Animal animal)
  * @return 
  */
 public void addTestValues( ) {
-	addAnimal(new Horse("Black Beauty","H01",HousingType.Stable));
-	addAnimal(new Horse("White Beauty","H02",HousingType.Stable));
-	addAnimal(new Dog("Rits","D01",HousingType.Indoor));
-	addAnimal(new Wolf("Rocky","W03",HousingType.Outdoor));
-	addAnimal(new Gifraffe("Giggy","G04",HousingType.Stable));
+	addAnimal(new Horse("Black Beauty"));
+	addAnimal(new Horse("White Beauty"));
+	addAnimal(new Dog("Rits"));
+	addAnimal(new Wolf("Rocky"));
+	addAnimal(new Gifraffe("Giggy",HousingType.Stable));
 }
 
 }

@@ -1,4 +1,3 @@
-package GUI;
 /***********
  * Name: Gautam Dey <gdey@anonymizerinc.com>
  * Date: Sunday, 17 Aug 2008

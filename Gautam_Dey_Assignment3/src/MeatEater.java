@@ -19,11 +19,17 @@ public abstract class MeatEater extends Animal
 	 * @return Weather the animal like the food you tried to feed it.
 	 */
 	public String eat(String food ) {
-		if( food.equalsIgnoreCase("Pork") || 
-		    food.equalsIgnoreCase("Beef") )
-		{
-			return likesFood();
+		FoodItem foundFood = null;
+		for( FoodItem aFood: FoodItem.values() ){
+			if( food.equalsIgnoreCase(aFood.toString()) ){
+				foundFood = aFood;
+				break;
+			}
 		}
+		if( foundFood != null && FoodType.MEAT.equals(foundFood.getType())  ) {
+			return likesFood();
+		} 
+		// Throw an error
 		return dislikesFood();
 	}
 }

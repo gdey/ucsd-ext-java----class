@@ -1,4 +1,3 @@
-package Animals;
 /***********
  * Name: Gautam Dey <gdey@anonymizerinc.com>
  * Date: Sunday, 3 Aug 2008
@@ -9,13 +8,13 @@ package Animals;
 public class Deer extends PlantEater
 {
 	Deer (String name, String id, HousingType housing) {
-		super(name,id,4,housing,AnimalSortType.Deer);
+		super(name,id,4,housing,AnimalSortType.DEER);
 	}
 	Deer (String name, HousingType housing) {
-		super(name,"DR00",4,housing,AnimalSortType.Deer);
+		super(name,"DR00",4,housing,AnimalSortType.DEER);
 	}
 	Deer (String name) {
-		super(name,"DR00",4,HousingType.Outdoor,AnimalSortType.Deer);
+		super(name,"DR00",4,HousingType.Outdoor,AnimalSortType.DEER);
 	}
 	
 	

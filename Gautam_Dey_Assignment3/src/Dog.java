@@ -1,4 +1,3 @@
-package Animals;
 /***********
  * Name: Gautam Dey <gdey@anonymizerinc.com>
  * Date: Sunday, 3 Aug 2008
@@ -10,12 +9,12 @@ package Animals;
 public class Dog extends MeatEater
 {
 	Dog (String name, String id, HousingType housing) {
-		super(name,id,4,housing,AnimalSortType.Dog);
+		super(name,id,4,housing,AnimalSortType.DOG);
+	}
+	Dog (String name, HousingType housing) {
+		super(name,"D00",4,housing,AnimalSortType.DOG);
 	}
 	Dog (String name) {
-		super(name,"D00",4,housing,AnimalSortType.Dog);
-	}
-	Dog (String name) {
-		super(name,id,4,HousingType.Indoor,AnimalSortType.Dog);
+		super(name,"D00",4,HousingType.Indoor,AnimalSortType.DOG);
 	}
 }
