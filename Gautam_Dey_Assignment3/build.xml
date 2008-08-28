@@ -1,24 +1,49 @@
-<project>
+<project name="AnimalFarm" basedir="." default="main">
+	
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build"/>
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="jar.dir"     value="${build.dir}/jar"/>
+	<property name="main-class" value="AnimalFarm" />
+	<property name="gui.main-class" value="GUIAnimalFarm" />
+	<property name="gui.project.name" value="GUI${ant.project.name}"/>
 	
 	<target name="clean">
 		<delete dir="build" />
 	</target>
 	
 	<target name="compile">
-		<mkdir dir="build/classes" />
-		<javac srcdir="src" destdir="build/classes" />
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" />
 	</target>
 	
-	<target name="jar">
-		<mkdir dir="build/jar" />
-		<jar destfile="build/jar/AnimalFarm.jar" basedir="build/classes">
+	<target name="jar" depends="compile">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
 			<manifest>
-				<attribute name="Main-Class" value="AnimalFarm"/>
+				<attribute name="Main-Class" value="${main-class}"/>
 			</manifest>
 		</jar>
 	</target>
 	
-	<target name="run">
-		<java jar="build/jar/AnimalFarm.jar" fork="true" />
+	<target name="jar-gui" depends="compile">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile="${jar.dir}/${gui.project.name}.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${gui.main-class}"/>
+			</manifest>
+		</jar>
 	</target>
+	
+	<target name="run" depends="jar">
+		<java jar="${jar.dir}/${ant.project.name}.jar" fork="true" />
+	</target>
+	
+	<target name="run-gui" depends="jar-gui">
+		<java jar="${jar.dir}/${gui.project.name}.jar" fork="true" />
+	</target>
+	
+	<target name="run-all" depends="run, run-gui" />
+	<target name="clean-build" depends="clean,jar" />
+	<target name="main" depends="clean, run-all" />
 </project>
