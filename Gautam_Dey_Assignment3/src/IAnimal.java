@@ -14,4 +14,8 @@ public interface IAnimal
 	public void setID( String id );
 	public void setName( String name );
 	public void setNumberOfLegs( int numOfLegs );
+	public AnimalSort getSort();
+	public void setSort(AnimalSort sort);
+	public AnimalCategoryType getCategory();
+	public void setCategory(AnimalCategoryType category);
 }

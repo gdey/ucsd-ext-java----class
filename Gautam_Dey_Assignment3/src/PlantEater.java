@@ -7,10 +7,10 @@
  */
 public abstract class PlantEater extends Animal
 {
-	PlantEater (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort) {
+	PlantEater (String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort) {
 		super(name,id,numberOfLegs,housing,sort,AnimalCategoryType.PlantEater);
 	}
-	PlantEater (String name, int numberOfLegs, HousingType housing, AnimalSortType sort) {
+	PlantEater (String name, int numberOfLegs, HousingType housing, AnimalSort sort) {
 		super(name,numberOfLegs,housing,sort,AnimalCategoryType.PlantEater);
 	}
 	/**

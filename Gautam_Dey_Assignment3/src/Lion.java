@@ -8,12 +8,12 @@
 public class Lion extends MeatEater
 {
 	Lion (String name, String id, HousingType housing) {
-		super(name,id,4,housing, AnimalSortType.LION);
+		super(name,id,4,housing, AnimalSort.LION);
 	}
 	Lion (String name, HousingType housing) {
-		super(name,4,housing, AnimalSortType.LION);
+		super(name,4,housing, AnimalSort.LION);
 	}
 	Lion (String name) {
-		super(name,4,HousingType.Outdoor, AnimalSortType.LION);
+		super(name,4,HousingType.Outdoor, AnimalSort.LION);
 	}
 }

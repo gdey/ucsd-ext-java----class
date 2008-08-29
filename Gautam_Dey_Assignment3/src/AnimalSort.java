@@ -7,7 +7,7 @@
  */
 /** The basic enums for Animals Sorts, also acts as a factory! **/ 
 
-public enum AnimalSortType
+public enum AnimalSort
 {
 	DEER("DR"),
 	DOG("D"),
@@ -18,7 +18,7 @@ public enum AnimalSortType
 	
 	private String abbrv;
 	
-	AnimalSortType(String abbrv) {
+	AnimalSort(String abbrv) {
 		this.abbrv = abbrv;
 	}
 	public Animal getAnimal( String name ){

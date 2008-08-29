@@ -13,7 +13,7 @@ public class AnimalManager extends Object
 	AnimalManager () {
 		animals = new ArrayList<Animal>();
 	}
-	private int[] animalCount = new int[AnimalSortType.values().length];
+	private int[] animalCount = new int[AnimalSort.values().length];
 
 /**
  * getNumOfItems
@@ -29,7 +29,7 @@ public void addAnimalIntoIndex(int index, Animal animal){
 	if(index < 0 || index >= animals.size() ){
 		index = 0;
 	}
-	AnimalSortType sort = animal.getSort();
+	AnimalSort sort = animal.getSort();
 	animal.setID(sort.getAbbrv()+(++animalCount[sort.ordinal()]));
 	this.animals.add(index,animal);
 

@@ -12,11 +12,11 @@ public abstract class Animal implements IAnimal
 	private int                numberOfLegs;
 	private boolean            isAggressive;
 	private HousingType        housing;
-	private AnimalSortType     sort;
+	private AnimalSort     sort;
 	private AnimalCategoryType category;
 	
 	/************* Constructors ***************************/
-	public Animal (String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType categoryType, boolean isAggressive )
+	public Animal (String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType categoryType, boolean isAggressive )
 	{
 		this.setName( name );
 		this.setID( id );
@@ -27,7 +27,7 @@ public abstract class Animal implements IAnimal
 		this.setIsAggressive( isAggressive );
 	}
 	
-	public Animal(String name, String id, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType category)
+	public Animal(String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType category)
 	{
 		this.setName( name );
 		this.setID( id );
@@ -38,7 +38,7 @@ public abstract class Animal implements IAnimal
 		this.setIsAggressive( false );		
 	}
 	
-	public Animal (String name, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType categoryType, boolean isAggressive )
+	public Animal (String name, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType categoryType, boolean isAggressive )
 	{
 		this.setName( name );
 		this.setID( sort.getAbbrv()+"00" );
@@ -48,7 +48,7 @@ public abstract class Animal implements IAnimal
 		this.setCategory( category );
 		this.setIsAggressive( isAggressive );
 	}
-	public Animal(String name, int numberOfLegs, HousingType housing, AnimalSortType sort, AnimalCategoryType category)
+	public Animal(String name, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType category)
 	{
 		this.setName( name );
 		this.setID( sort.getAbbrv()+"00" );
@@ -58,6 +58,8 @@ public abstract class Animal implements IAnimal
 		this.setCategory( category );
 		this.setIsAggressive( false );		
 	}
+	
+
 	/************* Getters ***************************/	
 	/**
 	 * getName 
@@ -213,10 +215,10 @@ public abstract class Animal implements IAnimal
 	public AnimalCategoryType getCategory() {
 		return category;
 	}
-	public void setSort(AnimalSortType sort) {
+	public void setSort(AnimalSort sort) {
 		this.sort = sort;
 	}
-	public AnimalSortType getSort() {
+	public AnimalSort getSort() {
 		return sort;
 	}
 	

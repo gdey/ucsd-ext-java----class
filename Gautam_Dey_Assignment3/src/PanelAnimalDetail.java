@@ -15,6 +15,8 @@ public class PanelAnimalDetail extends JPanel{
 	
 	private JTextField txtNickName;
 	private JTextField txtNumberOfLegs;
+	private JTextField txtSpeed;
+	private JLabel     lblSpeed;
 	private JComboBox  cmbSort;
 	private JComboBox  cmbHousing;
 	
@@ -27,10 +29,15 @@ public class PanelAnimalDetail extends JPanel{
 	private ButtonGroup  grbtnEaterType;
 	private JCheckBox    chkAggressive;
 	
+	private JTextField txtFeedAnimal;
+	private JComboBox  cmbFeed;
+	private JButton    bntFeed;
+	
+	
 	public PanelAnimalDetail() {
 
          JPanel pnlGrid  = new JPanel();
-         pnlGrid.setLayout(new GridLayout(4,2));
+         pnlGrid.setLayout(new GridLayout(5,2));
          pnlGrid.setBorder(BorderFactory.createTitledBorder("Animal Border"));
 
      /* Now we build up the table of labels and controls. */    
@@ -38,7 +45,7 @@ public class PanelAnimalDetail extends JPanel{
          pnlRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
          JPanel pnlLeft  = new JPanel();
          pnlLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
-         JPanel pnlContainer = new JPanel();  
+  
         
       // Nick Name
          txtNickName = new JTextField(15);
@@ -48,13 +55,12 @@ public class PanelAnimalDetail extends JPanel{
          pnlGrid.add(pnlRight);
        
      // Sort
-         cmbSort = new JComboBox(AnimalSortType.values());
+         cmbSort = new JComboBox(AnimalSort.values());
          cmbSort.addActionListener(new SortActionListener());
          pnlRight = new JPanel();
          pnlRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
          pnlLeft  = new JPanel();
          pnlLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
-         pnlContainer = new JPanel();
          pnlLeft.add(new JLabel("Sort"));
          pnlRight.add(cmbSort);
          pnlGrid.add(pnlLeft);
@@ -66,8 +72,6 @@ public class PanelAnimalDetail extends JPanel{
          pnlRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
          pnlLeft  = new JPanel();
          pnlLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
-         pnlContainer = new JPanel();
-		 pnlContainer.setLayout(new FlowLayout(FlowLayout.LEFT));
          pnlLeft.add(new JLabel("Housing"));
          pnlRight.add(cmbHousing);
          pnlGrid.add(pnlLeft);
@@ -75,18 +79,31 @@ public class PanelAnimalDetail extends JPanel{
 
      // Number of Legs
          txtNumberOfLegs = new JTextField(4);
-		 txtNumberOfLegs.setEnabled(false);
+		 txtNumberOfLegs.setEnabled(true);
          pnlRight = new JPanel();
          pnlRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
          pnlLeft  = new JPanel();
          pnlLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
-         pnlContainer = new JPanel();
-		 pnlContainer.setLayout(new FlowLayout(FlowLayout.LEFT));
          pnlLeft.add(new JLabel("Number of Legs"));
          pnlRight.add(txtNumberOfLegs);
          pnlGrid.add(pnlLeft);
          pnlGrid.add(pnlRight);
        
+     // Speed
+     
+		 txtSpeed = new JTextField(4);
+		 txtSpeed.setEnabled(true);
+		 lblSpeed = new JLabel("Speed");
+		 pnlRight = new JPanel();
+		 pnlRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		 pnlRight.add(txtSpeed);
+		
+		 pnlLeft = new JPanel();
+		 pnlLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
+		 pnlLeft.add(lblSpeed);
+		 pnlGrid.add(pnlLeft);
+		 pnlGrid.add(pnlRight);
+		
         // Reusing pnlLeft for the Command buttons.
 		 pnlLeft   = new JPanel();
 		 btnAdd    = new JButton("Add");
@@ -106,6 +123,7 @@ public class PanelAnimalDetail extends JPanel{
 	     pnlRight.add(pnlGrid,BorderLayout.NORTH);
 	     pnlRight.add(pnlLeft,BorderLayout.CENTER);
 		
+		
 		// Setup the Category Panel
 		 pnlGrid  = new JPanel();
          pnlGrid.setLayout(new GridLayout(4,1));
@@ -124,10 +142,36 @@ public class PanelAnimalDetail extends JPanel{
          pnlGrid.add(rbtnPlantEater);
          pnlGrid.add(chkAggressive );
 
+
+      // Setup Feed selected Animal
+		 JPanel pnlGrid2 = new JPanel();
+		 pnlGrid2.setLayout(new GridLayout(2,1));
+		// Add the Category Panel to the Overall Grid.
+		 pnlGrid2.add(pnlGrid);
+
+         txtFeedAnimal = new JTextField(20);
+         txtFeedAnimal.setEnabled(false);
+         cmbFeed = new JComboBox(FoodItem.values());
+         cmbFeed.setEditable(true);
+         bntFeed = new JButton("Feed Animal");
+		 JPanel pnlContainer = new JPanel();
+		 pnlContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
+		 
+		 pnlContainer.add(cmbFeed);
+		 pnlContainer.add(bntFeed);
+		
+		 pnlGrid = new JPanel();
+		 pnlGrid.setLayout(new GridLayout(2,1));
+		 pnlGrid.setBorder(BorderFactory.createTitledBorder("Feed The Selected Animal"));
+		 pnlGrid.add(txtFeedAnimal);
+		 pnlGrid.add(pnlContainer);
+		 // Added the Feed Animal Panels.
+		 pnlGrid2.add(pnlGrid);
+		
          pnlLeft = new JPanel();
 		 pnlLeft.setLayout(new BorderLayout());
          pnlLeft.add(pnlRight,BorderLayout.CENTER);
-         pnlLeft.add(pnlGrid,BorderLayout.EAST);
+         pnlLeft.add(pnlGrid2,BorderLayout.EAST);
 
          add(pnlLeft);
     }
@@ -135,7 +179,7 @@ public class PanelAnimalDetail extends JPanel{
 		txtNickName.setText(animal.getName());
 		txtNumberOfLegs.setText(""+animal.getNumberOfLegs());
 		cmbHousing.setSelectedIndex(animal.getHousing().ordinal());
-		cmbSort.setSelectedIndex(indexForSort(animal.getSort().toString()));
+		cmbSort.setSelectedIndex(animal.getSort().ordinal());
 		if( animal instanceof PlantEater ){
 			rbtnPlantEater.setSelected(true);
 			rbtnMeatEater.setSelected(false);
@@ -146,26 +190,33 @@ public class PanelAnimalDetail extends JPanel{
 		if( animal.isAggressive() ) {
 			chkAggressive.doClick();
 		}
-	}
-	/**
-	 * indexForSort
-	 */
-	public int indexForSort(String cat) {
-		for (int i=0;i<AnimalSortType.values().length;i++)
-		{
-			if( SORTS[i].equalsIgnoreCase(cat) ) {
-				return i;
-			}
+		if( animal instanceof IRunningAnimal ){
+			IRunningAnimal o = (IRunningAnimal) animal;
+			txtSpeed.setText(o.getSpeed()+"");
+			txtSpeed.setVisible(true);
+			lblSpeed.setVisible(true);
+		} else {
+			txtSpeed.setVisible(false);
+			lblSpeed.setVisible(false);
 		}
-		return -1;
 	}
+
 	
 	// This function will return an animal object as described by the view.
 	public Animal representedAnimal(){
 		Animal animal;
-		animal = AnimalSortType.values()[cmbSort.getSelectedIndex()].getAnimal(txtNickName.getText());
+		animal = AnimalSort.values()[cmbSort.getSelectedIndex()].getAnimal(txtNickName.getText());
 		animal.setHousing(HousingType.values()[cmbHousing.getSelectedIndex()]);
 		animal.setIsAggressive(chkAggressive.isSelected());
+		animal.setNumberOfLegs(Integer.parseInt(txtNumberOfLegs.getText()));
+		if( animal instanceof IRunningAnimal ){
+			IRunningAnimal o = (IRunningAnimal) animal;
+			String speed = txtSpeed.getText();
+			if(!speed.equals("")) {
+				o.setSpeed(Integer.parseInt(speed));
+			}
+			animal = (Animal)o;
+		}
 		return animal;
 	}
 	public void enableAdd(){

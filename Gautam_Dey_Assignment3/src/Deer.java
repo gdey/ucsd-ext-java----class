@@ -8,13 +8,13 @@
 public class Deer extends PlantEater
 {
 	Deer (String name, String id, HousingType housing) {
-		super(name,id,4,housing,AnimalSortType.DEER);
+		super(name,id,4,housing,AnimalSort.DEER);
 	}
 	Deer (String name, HousingType housing) {
-		super(name,4,housing,AnimalSortType.DEER);
+		super(name,4,housing,AnimalSort.DEER);
 	}
 	Deer (String name) {
-		super(name,4,HousingType.Outdoor,AnimalSortType.DEER);
+		super(name,4,HousingType.Outdoor,AnimalSort.DEER);
 	}
 	
 	
