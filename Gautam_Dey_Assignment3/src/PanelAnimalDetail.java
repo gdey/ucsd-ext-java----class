@@ -31,7 +31,8 @@ public class PanelAnimalDetail extends JPanel{
 	
 	private JTextField txtFeedAnimal;
 	private JComboBox  cmbFeed;
-	private JButton    bntFeed;
+	private JButton    btnFeed;
+	private Animal     oldAnimal;
 	
 	
 	public PanelAnimalDetail() {
@@ -153,12 +154,12 @@ public class PanelAnimalDetail extends JPanel{
          txtFeedAnimal.setEnabled(false);
          cmbFeed = new JComboBox(FoodItem.values());
          cmbFeed.setEditable(true);
-         bntFeed = new JButton("Feed Animal");
+         btnFeed = new JButton("Feed Animal");
 		 JPanel pnlContainer = new JPanel();
 		 pnlContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
 		 
 		 pnlContainer.add(cmbFeed);
-		 pnlContainer.add(bntFeed);
+		 pnlContainer.add(btnFeed);
 		
 		 pnlGrid = new JPanel();
 		 pnlGrid.setLayout(new GridLayout(2,1));
@@ -180,12 +181,25 @@ public class PanelAnimalDetail extends JPanel{
 		txtNumberOfLegs.setText(""+animal.getNumberOfLegs());
 		cmbHousing.setSelectedIndex(animal.getHousing().ordinal());
 		cmbSort.setSelectedIndex(animal.getSort().ordinal());
+		cmbFeed.removeAllItems();
 		if( animal instanceof PlantEater ){
 			rbtnPlantEater.setSelected(true);
 			rbtnMeatEater.setSelected(false);
+			//System.out.println("Plant eaters eats:");
+			for( FoodItem item : FoodItem.getFoods(FoodType.PLANT) ){
+				//System.out.println("Food: "+item);
+				cmbFeed.addItem(item);
+			}
 		} else {
 			rbtnMeatEater.setSelected(true);
 			rbtnPlantEater.setSelected(false);
+		    //System.out.println("Meat eaters eats:");
+
+			for( FoodItem item : FoodItem.getFoods(FoodType.MEAT) ){
+			//	System.out.println("Food: "+item);
+				cmbFeed.addItem(item);
+			}
+			
 		}
 		if( animal.isAggressive() ) {
 			chkAggressive.doClick();
@@ -199,21 +213,45 @@ public class PanelAnimalDetail extends JPanel{
 			txtSpeed.setVisible(false);
 			lblSpeed.setVisible(false);
 		}
+		txtFeedAnimal.setText(" ");
+		oldAnimal = animal;
 	}
 
 	
 	// This function will return an animal object as described by the view.
-	public Animal representedAnimal(){
+	public Animal representedAnimal() throws InvalidAnimalParamater {
 		Animal animal;
-		animal = AnimalSort.values()[cmbSort.getSelectedIndex()].getAnimal(txtNickName.getText());
+		try{
+			animal = AnimalSort.values()[cmbSort.getSelectedIndex()].getAnimal(txtNickName.getText());
+		} catch (IllegalArgumentException e) {
+			throw new InvalidAnimalParamater("Nick Name"," is invalid.");
+		}
 		animal.setHousing(HousingType.values()[cmbHousing.getSelectedIndex()]);
 		animal.setIsAggressive(chkAggressive.isSelected());
-		animal.setNumberOfLegs(Integer.parseInt(txtNumberOfLegs.getText()));
+		int numLegs;
+		try{
+			numLegs = Integer.parseInt(txtNumberOfLegs.getText());
+		} catch ( NumberFormatException e) {
+			// We throw an error and let the main panel pick it up.
+			throw new InvalidAnimalParamater("Number of Legs","'"+txtNumberOfLegs.getText() + "' is not a positive integer.");
+		}
+		if(numLegs < 0)
+			throw new InvalidAnimalParamater("Number of Legs","'"+txtNumberOfLegs.getText() + "' is not a positive integer.");
+		animal.setNumberOfLegs(numLegs);
 		if( animal instanceof IRunningAnimal ){
 			IRunningAnimal o = (IRunningAnimal) animal;
 			String speed = txtSpeed.getText();
+			// The speed may be blank the first time around.
+			int intSpeed;
 			if(!speed.equals("")) {
-				o.setSpeed(Integer.parseInt(speed));
+				try{
+					intSpeed = Integer.parseInt(speed);
+				} catch ( NumberFormatException e) {
+					throw new InvalidAnimalParamater("Speed","'"+speed + "' is not a positive integer.");
+				}
+				if(intSpeed < 0)
+					throw new InvalidAnimalParamater("Speed","'"+speed + "' is not a positive integer.");
+				o.setSpeed(intSpeed);
 			}
 			animal = (Animal)o;
 		}
@@ -249,14 +287,39 @@ public class PanelAnimalDetail extends JPanel{
 	{
 		btnChange.addActionListener(al);
 	}
+	public void addFeedAnimalActionListener( ActionListener al ){
+		btnFeed.addActionListener(al);
+	}
+	public String getFood() {
+		return cmbFeed.getSelectedItem().toString();
+	}
+	public void setFoodMessage(String message){
+		txtFeedAnimal.setText(message);
+	}
+	public void revertChanges(){
+		update(oldAnimal);
+	}
+	
 	/** 
 	 * Private Inner Class to handle the Changes in Sort type
 	 */
 	private class SortActionListener implements ActionListener
 	{
-		public void actionPerformed(ActionEvent e)
+		public void actionPerformed(ActionEvent event)
 		{
-			update(representedAnimal());
+			try{
+				update(representedAnimal());
+			} catch( InvalidAnimalParamater e) {
+				// So something is wrong and they are changing the animals type.
+
+				
+				// Let the user know what they need to correct.
+				JOptionPane.showMessageDialog(null,
+						" Error on field '"+e.getField()+"': "+e.getMessage(),
+						" Error: "+e.getField(), JOptionPane.ERROR_MESSAGE );
+				// Revert back to the last animal.
+				cmbSort.setSelectedIndex(oldAnimal.getSort().ordinal());
+			}
 		}
 	}
 }

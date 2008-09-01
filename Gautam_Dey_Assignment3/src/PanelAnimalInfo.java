@@ -37,7 +37,7 @@ public class PanelAnimalInfo extends JPanel {
 
 	public void update(AnimalManager animalManager) {
 		model.clear();
-		for (Animal animal : animalManager.animals() )
+		for (Animal animal : animalManager.getAnimals() )
 		{
 			model.addElement(animal);
 		}

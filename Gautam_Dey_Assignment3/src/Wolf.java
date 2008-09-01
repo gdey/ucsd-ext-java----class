@@ -8,12 +8,18 @@
 public class Wolf extends MeatEater
 {
 	Wolf (String name, String id, HousingType housing) {
-		super( name, id, 4, housing, AnimalSort.WOLF );
+		super( name, id, 4, housing); 
+		setSort(AnimalSort.WOLF );
 	}
 	Wolf (String name, HousingType housing) {
-		super( name, 4, housing, AnimalSort.WOLF );
+		super( name, 4, housing);
+		setSort(AnimalSort.WOLF );
 	}
 	Wolf (String name) {
-		super( name, 4, HousingType.Outdoor, AnimalSort.WOLF );
+		super( name, 4, HousingType.Outdoor);
+		setSort(AnimalSort.WOLF );
+	}
+	public Wolf clone(){
+		return (Wolf)super.clone();
 	}
 }

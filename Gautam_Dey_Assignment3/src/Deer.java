@@ -8,14 +8,18 @@
 public class Deer extends PlantEater
 {
 	Deer (String name, String id, HousingType housing) {
-		super(name,id,4,housing,AnimalSort.DEER);
+		super(name,id,4,housing);
+		setSort(AnimalSort.DEER);
 	}
 	Deer (String name, HousingType housing) {
-		super(name,4,housing,AnimalSort.DEER);
+		super(name,4,housing);
+		setSort(AnimalSort.DEER);
 	}
 	Deer (String name) {
-		super(name,4,HousingType.Outdoor,AnimalSort.DEER);
+		super(name,4,HousingType.Stable);
+		setSort(AnimalSort.DEER);
 	}
-	
-	
+	public Deer clone(){
+		return (Deer)super.clone();
+	}	
 }

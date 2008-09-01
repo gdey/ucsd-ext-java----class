@@ -9,14 +9,15 @@ public class RunningMeatEater extends MeatEater implements IRunningAnimal{
  
 	private int speed;
 	
-  	RunningMeatEater (String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort, int speed) {
-		super(name,id,numberOfLegs,housing,sort);
-		this.setSpeed(speed);
+	RunningMeatEater (String name, String id, int numberOfLegs, HousingType housing) {
+		super(name,id,numberOfLegs,housing);
+		setSpeed(0);
 	}
-	RunningMeatEater (String name, int numberOfLegs, HousingType housing, AnimalSort sort,int speed) {
-		super(name,numberOfLegs,housing,sort);
-		this.setSpeed(speed);
+	RunningMeatEater (String name, int numberOfLegs, HousingType housing) {
+		super(name,numberOfLegs,housing);
+		setSpeed(0);
 	}
+		
 	public int getSpeed() {
 		return this.speed;
 	}
@@ -26,5 +27,10 @@ public class RunningMeatEater extends MeatEater implements IRunningAnimal{
 	public String toString( ) {
 		return super.toString()  + "," +
 		       " Speed: " + speed;
+	}
+	public RunningMeatEater clone(){
+		RunningMeatEater clone = (RunningMeatEater) super.clone();
+		clone.setSpeed(speed);
+		return clone;
 	}
 }

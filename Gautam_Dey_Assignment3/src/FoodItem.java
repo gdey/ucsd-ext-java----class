@@ -5,6 +5,8 @@
  * Class: Java Programming ][
  * Instructor: Farid Naisan
  */
+import java.util.ArrayList; 
+
 enum FoodItem {
 		
 	GRASS(FoodType.PLANT),
@@ -29,4 +31,17 @@ enum FoodItem {
 	FoodItem(FoodType type) { this.type = type; }
 	public FoodType getType(){ return this.type; }
 	public String toString(){ return this.name().toLowerCase(); }
+	static public FoodItem[] getFoods(FoodType type){
+		
+		FoodItem[] a = new FoodItem[1];
+		
+		ArrayList<FoodItem> items = new ArrayList<FoodItem>();
+		for( FoodItem item : FoodItem.values() ){
+			if(item.getType().equals(type))
+			   items.add(item);
+		}
+		
+		a = items.toArray(a);
+		return a;
+	}
 }

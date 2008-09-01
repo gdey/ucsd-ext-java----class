@@ -5,58 +5,55 @@
  * Class: Java Programming ][
  * Instructor: Farid Naisan
  */
-public abstract class Animal implements IAnimal
+public abstract class Animal implements Cloneable, IAnimal
 {
 	private String             name;
 	private String             id;
 	private int                numberOfLegs;
 	private boolean            isAggressive;
 	private HousingType        housing;
-	private AnimalSort     sort;
+	private AnimalSort     	   sort;
 	private AnimalCategoryType category;
 	
 	/************* Constructors ***************************/
-	public Animal (String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType categoryType, boolean isAggressive )
+	public Animal (String name, String id, int numberOfLegs, HousingType housing, boolean isAggressive )
 	{
+
 		this.setName( name );
 		this.setID( id );
 		this.setNumberOfLegs( numberOfLegs );
 		this.setHousing( housing );
-		this.setSort( sort );
-		this.setCategory( category );
 		this.setIsAggressive( isAggressive );
 	}
 	
-	public Animal(String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType category)
+	public Animal(String name, String id, int numberOfLegs, HousingType housing)
 	{
+
 		this.setName( name );
 		this.setID( id );
 		this.setNumberOfLegs( numberOfLegs );
 		this.setHousing( housing );
-		this.setSort( sort );
-		this.setCategory( category );
 		this.setIsAggressive( false );		
 	}
 	
-	public Animal (String name, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType categoryType, boolean isAggressive )
+	public Animal (String name, int numberOfLegs, HousingType housing, boolean isAggressive )
 	{
+
 		this.setName( name );
 		this.setID( sort.getAbbrv()+"00" );
 		this.setNumberOfLegs( numberOfLegs );
 		this.setHousing( housing );
-		this.setSort( sort );
-		this.setCategory( category );
 		this.setIsAggressive( isAggressive );
 	}
-	public Animal(String name, int numberOfLegs, HousingType housing, AnimalSort sort, AnimalCategoryType category)
+	public Animal(String name, int numberOfLegs, HousingType housing)
 	{
+	
 		this.setName( name );
-		this.setID( sort.getAbbrv()+"00" );
+		this.setID( "" );
 		this.setNumberOfLegs( numberOfLegs );
 		this.setHousing( housing );
-		this.setSort( sort );
-		this.setCategory( category );
 		this.setIsAggressive( false );		
+
 	}
 	
 
@@ -204,10 +201,7 @@ public abstract class Animal implements IAnimal
 	 * @param food	What the animal is going to eat.
 	 * @return String 'Nom nom nom' or 'Yuck' depending on what the animal likes.
 	 */
-	public String eat(String food) {
-		// The default animal is an omnivor, it love everything you give it.
-		return likesFood();
-	}
+	abstract public String eat(String food) throws AnimalDontEatThisException;
 	
 	public void setCategory(AnimalCategoryType category) {
 		this.category = category;
@@ -221,5 +215,14 @@ public abstract class Animal implements IAnimal
 	public AnimalSort getSort() {
 		return sort;
 	}
-	
+	public Animal clone() {
+		try{	
+		  Animal clone = (Animal)super.clone();
+		  return clone;
+		} catch( CloneNotSupportedException e) {
+			// We do nothing. Because well this should never happen.
+			// Cloning animals in our world is rather simple.
+			return null;
+		}
+	}
 }

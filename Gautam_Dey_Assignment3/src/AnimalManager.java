@@ -25,7 +25,7 @@ public int getNumOfItems() {
 	return animals.size();
 }
 
-public void addAnimalIntoIndex(int index, Animal animal){
+public void addElement(int index, Animal animal){
 	if(index < 0 || index >= animals.size() ){
 		index = 0;
 	}
@@ -36,13 +36,13 @@ public void addAnimalIntoIndex(int index, Animal animal){
 
 }
 /**
- * addAnimal
+ * addElement
  *
  * @param animal An animal to manage.
  * @return 
  */
-public void addAnimal(Animal animal) {
-   addAnimalIntoIndex(0,animal);
+public void addElement(Animal animal) {
+   addElement(0,animal);
 }
 /**
  * getAnimalList
@@ -58,8 +58,40 @@ public String[] getAnimalList( ) {
 	}
 	return animalsAsStrings;
 }
-public ArrayList<Animal> animals() {
-	return animals;
+public Animal getElement(int index){
+	Animal ani = animals.get(index);
+	switch(ani.getSort()){
+		case DEER:
+		   Deer deer = (Deer) ani;
+		   return (Deer)deer.clone();
+		case DOG:
+		   Dog dog = (Dog) ani;
+		   return (Dog)dog.clone();
+	    case GIFRAFFE:
+		   Gifraffe gifraffe = (Gifraffe) ani;
+		   return (Gifraffe)gifraffe.clone();
+		case HORSE:
+			Horse horse = (Horse) ani;
+			return (Horse)horse.clone();
+		case LION:
+			Lion lion = (Lion) ani;
+			return (Lion)lion.clone();
+		case WOLF:
+			Wolf wolf = (Wolf) ani;
+			return (Wolf)wolf.clone();
+		case CHEETAH:
+			Cheetah cheetah = (Cheetah) ani;
+			return (Cheetah)cheetah.clone();
+		default:
+		  // Don't know that type of creature.
+		    return (Animal)ani.clone();
+	}
+}
+
+public ArrayList<Animal> getAnimals(){
+	ArrayList<Animal> o = new ArrayList<Animal>();
+	o.addAll(animals);
+	return o;
 }
 public String[] getHorseList(){
 	String[] horsesAsStrings = new String[10];
@@ -73,19 +105,19 @@ public String[] getHorseList(){
 	return horsesAsStrings;
 }
 
-public void removeIndex(int index)
+public void removeElement(int index)
 {
 	if(! (index < 0 || index >= animals.size() ) ){
 		animals.remove(index);
 	}
 }
-public void replaceAnimalAtIndex(int index, Animal animal)
+public void replaceElement(int index, Animal animal)
 {
 	if(! (index < 0 || index >= animals.size() ) ){
-		removeIndex(index);
-		addAnimalIntoIndex(index,animal);
+		removeElement(index);
+		addElement(index,animal);
 	} else {
-		addAnimal(animal);
+		addElement(animal);
 	}
 }
 /**
@@ -95,11 +127,11 @@ public void replaceAnimalAtIndex(int index, Animal animal)
  * @return 
  */
 public void addTestValues( ) {
-	addAnimal(new Horse("Black Beauty"));
-	addAnimal(new Horse("White Beauty"));
-	addAnimal(new Dog("Rits"));
-	addAnimal(new Wolf("Rocky"));
-	addAnimal(new Gifraffe("Giggy",HousingType.Stable));
+	addElement(new Horse("Black Beauty"));
+	addElement(new Horse("White Beauty"));
+	addElement(new Dog("Rits"));
+	addElement(new Wolf("Rocky"));
+	addElement(new Gifraffe("Giggy",HousingType.Stable));
 }
 
 }

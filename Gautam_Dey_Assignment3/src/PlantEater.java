@@ -7,11 +7,13 @@
  */
 public abstract class PlantEater extends Animal
 {
-	PlantEater (String name, String id, int numberOfLegs, HousingType housing, AnimalSort sort) {
-		super(name,id,numberOfLegs,housing,sort,AnimalCategoryType.PlantEater);
+	PlantEater (String name, String id, int numberOfLegs, HousingType housing) {
+		super(name,id,numberOfLegs,housing);
+		setCategory(AnimalCategoryType.PlantEater);
 	}
-	PlantEater (String name, int numberOfLegs, HousingType housing, AnimalSort sort) {
-		super(name,numberOfLegs,housing,sort,AnimalCategoryType.PlantEater);
+	PlantEater (String name, int numberOfLegs, HousingType housing) {
+		super(name,numberOfLegs,housing);
+		setCategory(AnimalCategoryType.PlantEater);
 	}
 	/**
 	 * eat
@@ -19,7 +21,7 @@ public abstract class PlantEater extends Animal
 	 * @param food  What you want to feed this animal.
 	 * @return Weather the animal like the food you tried to feed it.
 	 */
-	public String eat(String food ) {
+	public String eat(String food ) throws AnimalDontEatThisException{
 		
 		FoodItem foundFood = null;
 		for( FoodItem aFood: FoodItem.values() ){
@@ -32,7 +34,9 @@ public abstract class PlantEater extends Animal
 			return likesFood();
 		} 
 		// Throw an error
-		return dislikesFood();
+		throw new AnimalDontEatThisException(this.getName() + "  doesn't eat "+food);
 	}
-
+	public PlantEater clone(){
+		return (PlantEater)super.clone();
+	}
 }

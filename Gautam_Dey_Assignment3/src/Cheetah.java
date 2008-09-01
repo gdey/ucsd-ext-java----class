@@ -7,21 +7,23 @@
  */
 public class Cheetah extends RunningMeatEater 
 {
+	Cheetah (String name, String id, HousingType housing) {
+		super(name,id,4,housing);
+		setSort(AnimalSort.CHEETAH);
+		setSpeed(80);
+	}
+	Cheetah (String name, HousingType housing) {
+		super(name,4,housing);
+		setSort(AnimalSort.CHEETAH);
+		setSpeed(80);
+	}
+	Cheetah (String name) {
+		super(name,4,HousingType.Stable);
+		setSort(AnimalSort.CHEETAH);
+		setSpeed(80);
+	}
+	public Cheetah clone(){
+		return (Cheetah)super.clone();
+	}
 
-	
-	Horse (String name, String id, HousingType housing) {
-		super(name,id,4,housing,AnimalSort.HORSE,80);
-	}
-	Horse (String name, HousingType housing) {
-		super(name,4,housing,AnimalSort.HORSE,80);
-	}
-	Horse (String name) {
-		super(name,4,HousingType.Stable,AnimalSort.HORSE,80);
-	}
-	
-	Horse (String name, int speed){
-		super(name,4, HousingType.Stable,AnimalSort.HORSE,speed);
-	}
-
-	
 }

@@ -10,7 +10,7 @@
 **/
 public interface IAnimal
 {
-	public String eat( String food );
+	public String eat( String food ) throws AnimalDontEatThisException;
 	public void setID( String id );
 	public void setName( String name );
 	public void setNumberOfLegs( int numOfLegs );

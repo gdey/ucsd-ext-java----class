@@ -9,12 +9,21 @@
 
 public enum AnimalSort
 {
+	/*
+	 * If Modify this list, be sure to modify the getAnimal function 
+	 *   and the AnimalManager getElement function.
+	 */
 	DEER("DR"),
 	DOG("D"),
 	GIFRAFFE("G"),
 	HORSE("H"),
 	LION("L"),
-	WOLF("W");
+	CHEETAH("C"),
+	WOLF("W"),
+	BOBCAT("BC"),
+	ELEPHANT("E"),
+	SNAKE("S"),
+	HOUSECAT("HC");
 	
 	private String abbrv;
 	
@@ -36,6 +45,16 @@ public enum AnimalSort
 				return new Lion(name);
 			case WOLF:
 				return new Wolf(name);
+			case CHEETAH:
+				return new Cheetah(name);
+			case BOBCAT:
+				return new Bobcat(name);
+			case HOUSECAT:
+				return new HouseCat(name);
+			case ELEPHANT:
+				return new Elephant(name);
+			case SNAKE:
+				return new Snake(name);
 			default:
 				// Throw exception here.
 				return null;
